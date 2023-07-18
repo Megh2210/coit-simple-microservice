@@ -12,10 +12,10 @@ pool:
 
 
 steps:
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'SonarQube_AzureDevops'
-    scannerMode: 'Other'
+#- task: SonarQubePrepare@5
+#  inputs:
+#    SonarQube: 'SonarQube_AzureDevops'
+#    scannerMode: 'Other'
 
 - task: NodeTool@0
   inputs:
@@ -50,6 +50,13 @@ steps:
     #workingDir: 'coit-frontend'
     #customCommand: 'npm audit fix --registry=https://registry.npmjs.org/ --package-lock-only'
 
+
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush'
+    tags: '$(Build.BuildId)'
+    containerRegistry: Docker-Hub
+    repository: megha22/order-management
 
 
 
