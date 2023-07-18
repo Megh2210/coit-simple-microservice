@@ -18,10 +18,20 @@ steps:
 #    scannerMode: 'Other'
     
 
+
 - task: NodeTool@0
   inputs:
     versionSpec: '12.x'
   displayName: 'Install Node.js'
+
+
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'SonarQube_AzureDevops'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'Order_Management_Order_Management'
+    cliSources: 'coit-frontend'
 
 - script: |
     echo  '$(System.DefaultWorkingDirectory)'
@@ -31,9 +41,19 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkversion: 'JAVA_HOME_11_X64'
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '100'
+
+
 - script: |
     npm audit || true
   displayName: 'npm security audit'   
+
+
 
 #- task: Npm@1
  # displayName: 'npm audit'
