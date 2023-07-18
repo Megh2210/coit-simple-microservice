@@ -12,10 +12,11 @@ pool:
 
 
 steps:
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'SonarQube_AzureDevops'
-    scannerMode: 'Other'
+#- task: SonarQubePrepare@5
+#  inputs:
+#    SonarQube: 'SonarQube_AzureDevops'
+#    scannerMode: 'Other'
+    
 
 - task: NodeTool@0
   inputs:
