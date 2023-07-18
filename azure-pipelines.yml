@@ -12,10 +12,10 @@ pool:
 
 
 steps:
-#- task: SonarQubePrepare@5
-#  inputs:
-#    SonarQube: 'SonarQube_AzureDevops'
-#    scannerMode: 'Other'
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'SonarQube_AzureDevops'
+    scannerMode: 'Other'
 
 - task: NodeTool@0
   inputs:
@@ -57,6 +57,13 @@ steps:
     tags: '$(Build.BuildId)'
     containerRegistry: Docker-Hub
     repository: megha22/order-management
+
+
+- task: trivy@1
+  inputs:
+    version: 'latest'
+    image: 'megha22/order-management'
+
 
 
 
