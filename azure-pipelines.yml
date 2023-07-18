@@ -18,6 +18,8 @@ steps:
 
 - script: |
     echo  '$(System.DefaultWorkingDirectory)'
+    dir
+    dir coit-frontend/
     npm install
     npm run build
   displayName: 'npm install and build'
