@@ -30,9 +30,9 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-  - script: |
-      npm audit || true
-    displayName: 'npm security audit'   
+- script: |
+    npm audit || true
+  displayName: 'npm security audit'   
 
 #- task: Npm@1
  # displayName: 'npm audit'
