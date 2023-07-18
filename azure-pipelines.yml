@@ -24,12 +24,6 @@ steps:
     versionSpec: '12.x'
   displayName: 'Install Node.js'
 
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'SonarQube_AzureDevops'
-    scannerMode: 'MSBuild'
-    projectKey: 'Order_Management_Order_Management'
-
 - script: |
     echo  '$(System.DefaultWorkingDirectory)'
     cd coit-frontend
@@ -38,11 +32,16 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: SonarQubeAnalyze@5
-  inputs:
-    jdkversion: 'JAVA_HOME_11_X64'
 
-- task: SonarQubePublish@5
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'SonarQube_AzureDevops'
+    scannerMode: 'CLI'
+    projectKey: 'Order_Management_Order_Management'
+
+- task: SonarQubeAnalyze@4
+
+- task: SonarQubePublish@4
   inputs:
     pollingTimeoutSec: '100'
 
