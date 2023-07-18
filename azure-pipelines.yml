@@ -35,5 +35,7 @@ steps:
   displayName: 'npm audit'
   inputs:
     command: custom
+    workingDir: '/coit-frontend'
     customCommand: 'audit --registry=https://registry.npmjs.org/'
+
 
