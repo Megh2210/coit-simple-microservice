@@ -10,6 +10,13 @@ pr:
 pool:
   vmImage: ubuntu-latest
 
+
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'SonarQube_AzureDevops'
+    scannerMode: 'Other'
+
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -24,7 +31,10 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: SonarQubePrepare@5
+
+- task: Npm@1
+  displayName: 'npm audit'
   inputs:
-    SonarQube: 'SonarQube_AzureDevops'
-    scannerMode: 'Other'
+    command: custom
+    customCommand: 'audit --registry=https://registry.npmjs.org/'
+
