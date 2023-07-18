@@ -41,6 +41,8 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
+- task: SonarQubeAnalyze@5
+
 
 - task: SonarQubePublish@5
   inputs:
